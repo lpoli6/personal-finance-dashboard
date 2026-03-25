@@ -1,14 +1,14 @@
 import { PageHeader } from "@/components/layout/PageHeader";
 
-export default function DashboardPage() {
+export default function TransactionsPage() {
   return (
     <>
       <PageHeader
-        title="Dashboard"
-        description="Net worth overview and monthly tracking"
+        title="Transactions"
+        description="Import, categorise, and analyse spending"
       />
       <div className="rounded-lg border border-dashed border-border p-12 text-center text-sm text-muted-foreground">
-        Net worth charts and summary cards will appear here.
+        Transaction import and spending analysis will appear here.
       </div>
     </>
   );

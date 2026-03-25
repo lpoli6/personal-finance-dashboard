@@ -1,14 +1,14 @@
 import { PageHeader } from "@/components/layout/PageHeader";
 
-export default function DashboardPage() {
+export default function SubscriptionsPage() {
   return (
     <>
       <PageHeader
-        title="Dashboard"
-        description="Net worth overview and monthly tracking"
+        title="Subscriptions"
+        description="Track recurring costs and renewal dates"
       />
       <div className="rounded-lg border border-dashed border-border p-12 text-center text-sm text-muted-foreground">
-        Net worth charts and summary cards will appear here.
+        Subscription tracker and cost breakdown will appear here.
       </div>
     </>
   );

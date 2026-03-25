@@ -1,14 +1,14 @@
 import { PageHeader } from "@/components/layout/PageHeader";
 
-export default function DashboardPage() {
+export default function ProjectionsPage() {
   return (
     <>
       <PageHeader
-        title="Dashboard"
-        description="Net worth overview and monthly tracking"
+        title="Projections"
+        description="Pension modelling and investment growth scenarios"
       />
       <div className="rounded-lg border border-dashed border-border p-12 text-center text-sm text-muted-foreground">
-        Net worth charts and summary cards will appear here.
+        Pension modeller and investment projections will appear here.
       </div>
     </>
   );
