@@ -38,42 +38,46 @@ const CATEGORIES = [
 export function AssetAllocationChart({ data }: AssetAllocationChartProps) {
   const { theme } = useTheme();
   const isDark = theme === "dark";
+  const gridColor = isDark ? "#1e1e1e" : "#f0f0f0";
+  const axisColor = isDark ? "#737373" : "#a3a3a3";
 
   return (
-    <Card>
-      <CardHeader>
+    <Card className="rounded-xl border-border/30 p-6">
+      <CardHeader className="p-0 pb-4">
         <CardTitle>Asset Allocation</CardTitle>
         <CardDescription>Composition over time</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-0">
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
+            <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
             <XAxis
               dataKey="month"
-              tick={{ fontSize: 11 }}
+              tick={{ fontSize: 10, fill: axisColor }}
               interval="preserveStartEnd"
-              className="text-muted-foreground"
+              axisLine={false}
+              tickLine={false}
             />
             <YAxis
               tickFormatter={formatCompact}
-              tick={{ fontSize: 11 }}
+              tick={{ fontSize: 10, fill: axisColor }}
               width={60}
-              className="text-muted-foreground"
+              axisLine={false}
+              tickLine={false}
             />
             <Tooltip
               content={({ active, payload, label }) => {
                 if (!active || !payload?.length) return null;
                 return (
-                  <div className="rounded-lg border bg-card p-3 shadow-md text-sm">
+                  <div className="rounded-xl bg-[#141414] text-[#e5e5e5] p-3 shadow-xl text-sm border-0">
                     <p className="font-semibold mb-2">{label}</p>
                     {[...payload].reverse().map((entry: any) => (
                       <div key={entry.dataKey} className="flex items-center justify-between gap-4">
                         <div className="flex items-center gap-1.5">
                           <div className="h-2.5 w-2.5 rounded-full" style={{ background: entry.color }} />
-                          <span className="text-muted-foreground">{entry.name}</span>
+                          <span className="text-[#737373]">{entry.name}</span>
                         </div>
-                        <span className="font-medium tabular-nums">{formatGBP(entry.value)}</span>
+                        <span className="font-medium tabular-nums font-mono">{formatGBP(entry.value)}</span>
                       </div>
                     ))}
                   </div>
@@ -95,6 +99,7 @@ export function AssetAllocationChart({ data }: AssetAllocationChartProps) {
                   stroke={color}
                   fill={color}
                   fillOpacity={0.6}
+                  animationDuration={800}
                 />
               );
             })}

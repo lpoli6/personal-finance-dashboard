@@ -108,7 +108,7 @@ export function AddMonthSheet({ accounts, latestMonthData }: AddMonthSheetProps)
         <Plus className="h-4 w-4 mr-1" />
         Add Month
       </SheetTrigger>
-      <SheetContent className="sm:max-w-lg overflow-y-auto">
+      <SheetContent className="sm:max-w-lg overflow-y-auto bg-card border-border/30">
         <SheetHeader>
           <SheetTitle>Add Month: {nextMonthLabel}</SheetTitle>
           <SheetDescription>
@@ -153,7 +153,7 @@ export function AddMonthSheet({ accounts, latestMonthData }: AddMonthSheetProps)
           })}
         </div>
 
-        <div className="border-t pt-3 flex justify-between items-center text-sm font-semibold">
+        <div className="border-t border-border/30 pt-3 flex justify-between items-center text-sm font-semibold">
           <span>Net Worth</span>
           <span className="tabular-nums">
             {formatGBP(

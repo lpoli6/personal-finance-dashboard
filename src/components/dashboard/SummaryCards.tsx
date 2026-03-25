@@ -10,6 +10,13 @@ interface SummaryCardsProps {
   summary: DashboardSummary;
 }
 
+function getGreeting(): string {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good morning, Luca";
+  if (hour < 18) return "Good afternoon, Luca";
+  return "Good evening, Luca";
+}
+
 function ChangeIndicator({ value, pct }: { value: number; pct: number }) {
   const isPositive = value >= 0;
   const Icon = isPositive ? TrendingUp : TrendingDown;
@@ -17,7 +24,7 @@ function ChangeIndicator({ value, pct }: { value: number; pct: number }) {
     <div
       className={cn(
         "flex items-center gap-1 text-sm font-medium",
-        isPositive ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
+        isPositive ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"
       )}
     >
       <Icon className="h-3.5 w-3.5" />
@@ -29,38 +36,53 @@ function ChangeIndicator({ value, pct }: { value: number; pct: number }) {
 
 export function SummaryCards({ summary }: SummaryCardsProps) {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      <Card className="col-span-2">
-        <CardContent className="pt-6">
-          <p className="text-sm text-muted-foreground">Net Worth</p>
-          <p className="text-3xl font-bold tracking-tight mt-1">
-            {formatGBP(summary.current.netWorth)}
-          </p>
-          <div className="mt-2">
-            <ChangeIndicator value={summary.momChange} pct={summary.momPct} />
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardContent className="pt-6">
-          <p className="text-sm text-muted-foreground">Month-on-Month</p>
-          <p className="text-xl font-semibold mt-1">
-            {formatGBP(Math.abs(summary.momChange))}
-          </p>
+    <div className="space-y-6">
+      {/* Hero: Greeting + Net Worth */}
+      <div>
+        <p className="text-sm text-muted-foreground">{getGreeting()}</p>
+        <p className="font-display text-4xl lg:text-5xl font-semibold tracking-tight mt-1">
+          {formatGBP(summary.current.netWorth)}
+        </p>
+        <div className="flex items-center gap-4 mt-2">
           <ChangeIndicator value={summary.momChange} pct={summary.momPct} />
-        </CardContent>
-      </Card>
+          <span className="text-xs text-muted-foreground">vs last month</span>
+        </div>
+      </div>
 
-      <Card>
-        <CardContent className="pt-6">
-          <p className="text-sm text-muted-foreground">Year-on-Year</p>
-          <p className="text-xl font-semibold mt-1">
-            {formatGBP(Math.abs(summary.yoyChange))}
-          </p>
-          <ChangeIndicator value={summary.yoyChange} pct={summary.yoyPct} />
-        </CardContent>
-      </Card>
+      {/* 3 Metric Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <Card className="rounded-xl border-border/30 hover:scale-[1.01] transition-transform">
+          <CardContent className="p-6">
+            <p className="text-sm text-muted-foreground">Month-on-Month</p>
+            <p className="text-xl font-semibold mt-1 tabular-nums">
+              {formatGBP(Math.abs(summary.momChange))}
+            </p>
+            <ChangeIndicator value={summary.momChange} pct={summary.momPct} />
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-xl border-border/30 hover:scale-[1.01] transition-transform">
+          <CardContent className="p-6">
+            <p className="text-sm text-muted-foreground">Year-on-Year</p>
+            <p className="text-xl font-semibold mt-1 tabular-nums">
+              {formatGBP(Math.abs(summary.yoyChange))}
+            </p>
+            <ChangeIndicator value={summary.yoyChange} pct={summary.yoyPct} />
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-xl border-border/30 hover:scale-[1.01] transition-transform">
+          <CardContent className="p-6">
+            <p className="text-sm text-muted-foreground">Total Assets</p>
+            <p className="text-xl font-semibold mt-1 tabular-nums">
+              {formatGBP(summary.current.totalAssets)}
+            </p>
+            <p className="text-xs text-muted-foreground mt-1">
+              Liabilities: {formatGBP(summary.current.totalLiabilities)}
+            </p>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

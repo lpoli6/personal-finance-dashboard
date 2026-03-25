@@ -3,37 +3,44 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function DashboardLoading() {
   return (
-    <div>
-      <div className="mb-8">
-        <Skeleton className="h-8 w-48" />
-        <Skeleton className="h-4 w-72 mt-1" />
+    <div className="space-y-8">
+      {/* Hero skeleton */}
+      <div>
+        <Skeleton className="h-4 w-40 bg-muted" />
+        <Skeleton className="h-12 w-64 mt-2 bg-muted" />
+        <Skeleton className="h-4 w-48 mt-2 bg-muted" />
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <Card key={i}>
-            <CardContent className="pt-6">
-              <Skeleton className="h-4 w-20 mb-2" />
-              <Skeleton className="h-8 w-32" />
+
+      {/* 3 metric cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <Card key={i} className="rounded-xl border-border/30">
+            <CardContent className="p-6">
+              <Skeleton className="h-4 w-20 mb-2 bg-muted" />
+              <Skeleton className="h-7 w-32 bg-muted" />
             </CardContent>
           </Card>
         ))}
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-        <Card>
-          <CardContent className="pt-6">
-            <Skeleton className="h-[300px]" />
-          </CardContent>
+
+      {/* Charts */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card className="rounded-xl border-border/30 p-6">
+          <Skeleton className="h-[300px] bg-muted rounded-lg" />
         </Card>
-        <Card>
-          <CardContent className="pt-6">
-            <Skeleton className="h-[300px]" />
-          </CardContent>
+        <Card className="rounded-xl border-border/30 p-6">
+          <Skeleton className="h-[300px] bg-muted rounded-lg" />
         </Card>
       </div>
-      <Card className="mt-6">
-        <CardContent className="pt-6">
-          <Skeleton className="h-[200px]" />
-        </CardContent>
+
+      {/* MoM chart */}
+      <Card className="rounded-xl border-border/30 p-6">
+        <Skeleton className="h-[250px] bg-muted rounded-lg" />
+      </Card>
+
+      {/* Table */}
+      <Card className="rounded-xl border-border/30 p-6">
+        <Skeleton className="h-[200px] bg-muted rounded-lg" />
       </Card>
     </div>
   );

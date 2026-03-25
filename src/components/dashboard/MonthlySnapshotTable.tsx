@@ -108,8 +108,8 @@ export function MonthlySnapshotTable({
   let currentCategory: AccountCategory | null = null;
 
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between gap-4">
+    <Card className="rounded-xl border-border/30 p-6">
+      <CardHeader className="p-0 pb-4 flex flex-row items-center justify-between gap-4">
         <CardTitle>Monthly Snapshot</CardTitle>
         <div className="flex items-center gap-2">
           <Select value={selectedMonth} onValueChange={(v) => { if (v) onSelectMonth(v); }}>
@@ -131,15 +131,15 @@ export function MonthlySnapshotTable({
           )}
         </div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-0">
         <Table>
           <TableHeader>
-            <TableRow>
-              <TableHead>Account</TableHead>
-              <TableHead className="text-right w-44">Balance</TableHead>
+            <TableRow className="border-border/30">
+              <TableHead className="uppercase text-xs tracking-wider text-muted-foreground">Account</TableHead>
+              <TableHead className="text-right w-44 uppercase text-xs tracking-wider text-muted-foreground">Balance</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody className="divide-y divide-border/30">
             {orderedAccounts.map((account) => {
               const showCategoryHeader = account.category !== currentCategory;
               if (showCategoryHeader) currentCategory = account.category;
@@ -148,7 +148,7 @@ export function MonthlySnapshotTable({
               const isEditing = editValues[account.id] !== undefined;
 
               return (
-                <TableRow key={account.id}>
+                <TableRow key={account.id} className="border-0">
                   <TableCell>
                     <div className="flex items-center gap-2">
                       {showCategoryHeader && (
@@ -169,7 +169,7 @@ export function MonthlySnapshotTable({
                       }}
                       type="number"
                       step="0.01"
-                      className="text-right h-8 w-36 ml-auto tabular-nums"
+                      className="text-right h-8 w-36 ml-auto tabular-nums border-transparent hover:border-border/50 focus:border-border focus:ring-1 focus:ring-ring/30 transition-colors"
                       value={isEditing ? editValues[account.id] : (balance / 100).toFixed(2)}
                       onChange={(e) =>
                         setEditValues((prev) => ({
@@ -208,7 +208,7 @@ export function MonthlySnapshotTable({
             })}
           </TableBody>
           <TableFooter>
-            <TableRow>
+            <TableRow className="border-border/30">
               <TableCell className="font-semibold">Net Worth</TableCell>
               <TableCell className="text-right font-semibold tabular-nums">
                 {formatGBP(
