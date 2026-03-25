@@ -96,6 +96,40 @@ export interface AccountWithBalance extends Account {
   latestBalancePence: number | null;
 }
 
+export interface Subscription {
+  id: string;
+  name: string;
+  amount_pence: number;
+  frequency: "weekly" | "monthly" | "quarterly" | "annual";
+  category: "fitness" | "entertainment" | "improvement" | "car" | "miscellaneous";
+  renewal_date: string | null;
+  is_active: boolean;
+  notes: string | null;
+}
+
+export type SubscriptionCategory = Subscription["category"];
+
+export interface BudgetItem {
+  id: string;
+  name: string;
+  amount_pence: number;
+  type: "income" | "fixed" | "savings" | "discretionary";
+  display_order: number;
+  is_active: boolean;
+  notes: string | null;
+}
+
+export interface PlannedExpense {
+  id: string;
+  name: string;
+  amount_pence: number;
+  expense_type: string;
+  priority: string;
+  target_year: string | null;
+  notes: string | null;
+  is_completed: boolean;
+}
+
 export interface EditableSnapshotRow {
   accountId: string;
   accountName: string;
