@@ -130,6 +130,78 @@ export interface PlannedExpense {
   is_completed: boolean;
 }
 
+// --- Transaction types ---
+
+export type TransactionDirection = "debit" | "credit";
+export type ReconciliationStatus = "unreconciled" | "matched" | "excluded";
+export type StatementStatus = "pending" | "imported" | "reconciled";
+
+export interface Statement {
+  id: string;
+  source_account: string;
+  statement_date: string | null;
+  file_path: string;
+  file_name: string;
+  status: StatementStatus;
+  transaction_count: number;
+  total_debits_pence: number;
+  total_credits_pence: number;
+  created_at: string;
+}
+
+export interface Transaction {
+  id: string;
+  date: string;
+  description: string;
+  original_description: string | null;
+  amount_pence: number;
+  direction: TransactionDirection;
+  category_id: string | null;
+  source_account: string | null;
+  statement_id: string | null;
+  reconciliation_status: ReconciliationStatus;
+  matched_transaction_id: string | null;
+  is_subscription: boolean;
+  is_excluded: boolean;
+  notes: string | null;
+}
+
+export interface TransactionWithCategory extends Transaction {
+  transaction_categories: TransactionCategory | null;
+}
+
+export interface TransactionCategory {
+  id: string;
+  name: string;
+  parent_category_id: string | null;
+  type: "income" | "expense" | "transfer";
+  icon: string | null;
+}
+
+export interface CategoryRule {
+  id: string;
+  pattern: string;
+  category_id: string;
+  source_account: string | null;
+  priority: number;
+}
+
+export interface ParsedTransaction {
+  date: string;
+  description: string;
+  originalDescription: string;
+  amountPence: number;
+  direction: TransactionDirection;
+  categoryId: string | null;
+  categoryName: string | null;
+  confidence: number | null;
+  foreignAmount: string | null;
+  foreignCurrency: string | null;
+  isDuplicate: boolean;
+  duplicateOf: string | null;
+  excluded: boolean;
+}
+
 export interface EditableSnapshotRow {
   accountId: string;
   accountName: string;

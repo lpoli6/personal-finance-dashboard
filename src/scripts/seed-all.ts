@@ -7,6 +7,7 @@ const scripts = [
   "seed-budget.ts",
   "seed-planned-expenses.ts",
   "seed-property.ts",
+  "seed-categories.ts",
 ];
 
 console.log("=== Running all seed scripts ===\n");
