@@ -210,3 +210,25 @@ export interface EditableSnapshotRow {
   balancePence: number;
   displayOrder: number;
 }
+
+// --- Projection types ---
+
+export interface PensionScenario {
+  id: string;
+  name: string;
+  account_id: string;
+  monthly_contribution_pence: number;
+  employer_contribution_pence: number;
+  annual_return_pct: number;
+  retirement_age: number;
+  inflation_rate_pct: number;
+}
+
+export interface ProjectionYear {
+  year: number;
+  age: number;
+  nominalValue: number;
+  realValue: number;
+  cumulativeContributions: number;
+  growth: number;
+}
