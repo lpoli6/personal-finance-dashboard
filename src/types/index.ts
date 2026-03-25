@@ -68,6 +68,34 @@ export interface DashboardSummary {
   latestMonth: string;
 }
 
+export interface Property {
+  id: string;
+  account_id: string;
+  purchase_date: string | null;
+  purchase_price_pence: number | null;
+  current_valuation_pence: number | null;
+  valuation_date: string | null;
+  address: string | null;
+  notes: string | null;
+}
+
+export interface Mortgage {
+  id: string;
+  account_id: string;
+  property_id: string;
+  original_amount_pence: number;
+  interest_rate: number | null;
+  term_months: number | null;
+  start_date: string | null;
+  fixed_until: string | null;
+  monthly_payment_pence: number | null;
+  notes: string | null;
+}
+
+export interface AccountWithBalance extends Account {
+  latestBalancePence: number | null;
+}
+
 export interface EditableSnapshotRow {
   accountId: string;
   accountName: string;
