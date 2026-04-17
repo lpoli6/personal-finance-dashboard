@@ -16,7 +16,7 @@ export default async function AccountsPage() {
   if (accErr) {
     return (
       <>
-        <PageHeader title="Accounts" description="Manage your accounts and view balances" />
+        <PageHeader eyebrow="Money" title="Accounts" description="Every account you hold — cash, investment, pension, property, and liabilities." />
         <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-6 text-sm text-destructive">
           Failed to load accounts: {accErr.message}
         </div>

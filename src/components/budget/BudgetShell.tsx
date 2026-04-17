@@ -22,10 +22,13 @@ export function BudgetShell({ budgetItems, plannedExpenses }: BudgetShellProps) 
       <PlannedExpensesTable expenses={plannedExpenses} />
 
       {/* Budget vs Actual placeholder */}
-      <Card className="border-dashed">
-        <CardContent className="flex items-center justify-center gap-3 py-10 text-muted-foreground">
-          <ArrowLeftRight className="h-5 w-5" />
-          <span className="text-sm">Import transactions to see budget vs actual spending.</span>
+      <Card className="border border-dashed border-border bg-card/30 rounded-2xl">
+        <CardContent className="flex flex-col items-center justify-center gap-2 py-12 text-muted-foreground">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-muted">
+            <ArrowLeftRight className="h-4 w-4" />
+          </div>
+          <p className="text-sm font-medium text-foreground">Budget vs actual</p>
+          <p className="text-xs text-muted-foreground">Import transactions to see how reality compares to plan.</p>
         </CardContent>
       </Card>
     </div>

@@ -14,7 +14,7 @@ export default async function SubscriptionsPage() {
   if (error) {
     return (
       <>
-        <PageHeader title="Subscriptions" description="Track recurring costs and renewal dates" />
+        <PageHeader eyebrow="Plan" title="Subscriptions" description="Recurring commitments, renewal dates, and monthly burn." />
         <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-6 text-sm text-destructive">
           Failed to load: {error.message}
         </div>
