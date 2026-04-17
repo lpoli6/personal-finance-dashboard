@@ -98,8 +98,9 @@ export default async function ProjectionsPage() {
   return (
     <>
       <PageHeader
+        eyebrow="Plan"
         title="Projections"
-        description="Pension modelling and investment growth scenarios"
+        description="Model retirement drawdown, safe withdrawal rates, and long-term investment growth."
       />
       <ProjectionsShell data={projectionsData} />
     </>

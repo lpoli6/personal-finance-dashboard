@@ -22,15 +22,9 @@ export default async function DashboardPage() {
 
   if (error) {
     return (
-      <>
-        <PageHeader
-          title="Dashboard"
-          description="Net worth overview and monthly tracking"
-        />
-        <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-6 text-sm text-destructive">
-          Failed to load data: {error.message}
-        </div>
-      </>
+      <div className="rounded-xl border border-destructive/50 bg-destructive/10 p-6 text-sm text-destructive">
+        Failed to load data: {error.message}
+      </div>
     );
   }
 
@@ -41,10 +35,11 @@ export default async function DashboardPage() {
     return (
       <>
         <PageHeader
+          eyebrow="Overview"
           title="Dashboard"
           description="Net worth overview and monthly tracking"
         />
-        <div className="rounded-lg border border-dashed border-border p-12 text-center text-sm text-muted-foreground">
+        <div className="rounded-xl border border-dashed border-border p-12 text-center text-sm text-muted-foreground">
           No data yet. Run the seed script or add your first month.
         </div>
       </>
@@ -57,18 +52,12 @@ export default async function DashboardPage() {
   const accounts = getLeafAccounts(rows);
 
   return (
-    <>
-      <PageHeader
-        title="Dashboard"
-        description="Net worth overview and monthly tracking"
-      />
-      <DashboardShell
-        summary={summary}
-        chartData={chartData}
-        momChanges={momChanges}
-        months={months}
-        accounts={accounts}
-      />
-    </>
+    <DashboardShell
+      summary={summary}
+      chartData={chartData}
+      momChanges={momChanges}
+      months={months}
+      accounts={accounts}
+    />
   );
 }

@@ -28,8 +28,9 @@ export default async function TransactionsPage() {
     return (
       <>
         <PageHeader
+          eyebrow="Money"
           title="Transactions"
-          description="Import, categorise, and analyse spending"
+          description="Import, categorise, and analyse spending."
         />
         <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-6 text-sm text-destructive">
           Failed to load: {txRes.error?.message || catRes.error?.message}

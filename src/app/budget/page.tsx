@@ -15,8 +15,8 @@ export default async function BudgetPage() {
   if (bErr || pErr) {
     return (
       <>
-        <PageHeader title="Budget" description="Monthly budget overview and future planning" />
-        <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-6 text-sm text-destructive">
+        <PageHeader eyebrow="Plan" title="Budget" description="Monthly budget overview and future planning" />
+        <div className="rounded-xl border border-destructive/50 bg-destructive/10 p-6 text-sm text-destructive">
           Failed to load: {bErr?.message || pErr?.message}
         </div>
       </>
@@ -25,7 +25,11 @@ export default async function BudgetPage() {
 
   return (
     <>
-      <PageHeader title="Budget" description="Monthly budget overview and future planning" />
+      <PageHeader
+        eyebrow="Plan"
+        title="Monthly budget"
+        description="Every pound allocated — set where your take-home flows, and track upcoming planned expenses."
+      />
       <BudgetShell
         budgetItems={(budgetItems || []) as BudgetItem[]}
         plannedExpenses={(plannedExpenses || []) as PlannedExpense[]}

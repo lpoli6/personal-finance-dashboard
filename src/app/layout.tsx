@@ -23,8 +23,8 @@ const dmSerif = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Finance Dashboard",
-  description: "Personal finance tracker and planner",
+  title: "Finance — Personal Wealth OS",
+  description: "A smoother way to track net worth, budget, and plan for financial independence.",
 };
 
 export default function RootLayout({
@@ -35,18 +35,20 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${dmSerif.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${dmSerif.variable} h-full antialiased dark`}
       suppressHydrationWarning
     >
-      <body className="h-full bg-background text-foreground">
+      <body className="h-full bg-background text-foreground selection:bg-emerald-500/20 selection:text-emerald-100">
         <ThemeProvider>
           <TooltipProvider>
-            <Sidebar />
-            <main className="md:pl-16 min-h-full pb-16 md:pb-0">
-              <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
-                {children}
-              </div>
-            </main>
+            <div className="relative min-h-full">
+              <Sidebar />
+              <main className="md:pl-60 min-h-full pb-20 md:pb-0">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-8 lg:py-10">
+                  {children}
+                </div>
+              </main>
+            </div>
             <Toaster />
           </TooltipProvider>
         </ThemeProvider>
